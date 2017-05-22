@@ -1,0 +1,85 @@
+name:                servant-mongodb
+version:             0.1.0.0
+synopsis:            Playgroun for using Servant with MongoDB
+description:         Playground for using Servant with MongoDB
+homepage:            https://github.com/mauriciofierrom/servant-mongodbreadme
+license:             BSD3
+license-file:        LICENSE
+author:              Mauricio Fierro
+maintainer:          mauriciofierrom@gmail.com
+copyright:           2017 Mauricio Fierro
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  ghc-options:         -Wall
+  exposed-modules:     Lib
+                     , Common.Types
+                     , Common.Persistence
+                     , Item.Types
+                     , Item.API
+                     , Item.Persistence
+                     , Enterprise.Types
+                     , Enterprise.Persistence
+                     , Enterprise.API
+                     , Bill.Types
+                     , Bill.Persistence
+                     , Bill.API
+  build-depends:       base >= 4.7 && < 5
+                     , transformers
+                     , aeson
+                     , warp
+                     , wai
+                     , servant
+                     , mongoDB
+                     , servant-client
+                     , servant-server
+                     , mtl
+                     , bson
+                     , text
+                     , time
+  default-language:    Haskell2010
+
+executable servant-mongodb-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-depends:       base
+                     , transformers
+                     , aeson
+                     , warp
+                     , mongoDB
+                     , servant-mongodb
+                     , servant
+                     , bytestring
+                     , utf8-string
+  default-language:    Haskell2010
+
+test-suite servant-mongodb-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , warp
+                     , wai
+                     , servant
+                     , servant-server
+                     , servant-client
+                     , http-types
+                     , http-client
+                     , mongoDB
+                     , bson
+                     , time
+                     , transformers
+                     , process
+                     , servant-mongodb
+                     , hspec
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/githubuser/servant-mongodb
